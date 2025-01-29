@@ -15,31 +15,30 @@ export class Volume {
         const otherBaseAmount = this.#convertAmountToBaseUnit(other.unit, other.amount)
         const newAmount = thisBaseAmount + otherBaseAmount;
 
-        return new Volume(newAmount, Units.TEASPOON);
+        return new Volume(newAmount, VolumeUnits.TEASPOON);
     }
 
     #convertAmountToBaseUnit(unit, amount) {
         switch (unit) {
-            case Units.TABLESPOON:
+            case VolumeUnits.TABLESPOON:
                 return amount * 3;
-            case Units.OUNCE:
+            case VolumeUnits.OUNCE:
                 return amount * 6;
-            case Units.CUP:
+            case VolumeUnits.CUP:
                 return amount * 48;
-            case Units.PINT:
+            case VolumeUnits.PINT:
                 return amount * 96;
-            case Units.QUART:
+            case VolumeUnits.QUART:
                 return amount * 192;
-            case Units.GALLON:
+            case VolumeUnits.GALLON:
                 return amount * 768;
             default:
                 return amount;
         }
-
     }
 }
 
-export class Units {
+export class VolumeUnits {
     static TEASPOON = 'tsp';
     static TABLESPOON = 'tbsp';
     static OUNCE = 'oz';
