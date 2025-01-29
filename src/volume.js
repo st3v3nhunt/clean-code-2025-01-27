@@ -1,19 +1,12 @@
-export class Volume {
-    constructor(amount, unit) {
-        this.amount = amount;
-        this.unit = unit;
-    }
+import { Measurement } from './measurement.js';
 
-    equals(other) {
-        const thisBaseAmount = this.unit.convertAmountToBaseUnit(this.amount)
-        const otherBaseAmount = other.unit.convertAmountToBaseUnit(other.amount)
-        return thisBaseAmount === otherBaseAmount
+export class Volume extends Measurement {
+    constructor(amount, unit) {
+        super(amount, unit);
     }
 
     add(other) {
-        const thisBaseAmount = this.unit.convertAmountToBaseUnit(this.amount)
-        const otherBaseAmount = other.unit.convertAmountToBaseUnit(other.amount)
-        const newAmount = thisBaseAmount + otherBaseAmount;
+        const newAmount = super.add(other);
 
         return new Volume(newAmount, new VolumeUnits(VolumeUnits.TEASPOON));
     }
