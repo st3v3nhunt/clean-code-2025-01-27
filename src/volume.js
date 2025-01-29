@@ -5,20 +5,20 @@ export class Volume {
     }
 
     equals(other) {
-        const thisBaseAmount = this.convertAmountToBaseUnit(this.unit, this.amount)
-        const otherBaseAmount = this.convertAmountToBaseUnit(other.unit, other.amount)
+        const thisBaseAmount = this.#convertAmountToBaseUnit(this.unit, this.amount)
+        const otherBaseAmount = this.#convertAmountToBaseUnit(other.unit, other.amount)
         return thisBaseAmount === otherBaseAmount
     }
 
     add(other) {
-        const thisBaseAmount = this.convertAmountToBaseUnit(this.unit, this.amount)
-        const otherBaseAmount = this.convertAmountToBaseUnit(other.unit, other.amount)
+        const thisBaseAmount = this.#convertAmountToBaseUnit(this.unit, this.amount)
+        const otherBaseAmount = this.#convertAmountToBaseUnit(other.unit, other.amount)
         const newAmount = thisBaseAmount + otherBaseAmount;
 
         return new Volume(newAmount, Units.TEASPOON);
     }
 
-    convertAmountToBaseUnit(unit, amount) {
+    #convertAmountToBaseUnit(unit, amount) {
         switch (unit) {
             case Units.TABLESPOON:
                 return amount * 3;
