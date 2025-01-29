@@ -5,6 +5,19 @@ export class Temperature extends Measurement {
         super(amount, unit);
     }
 
+    add(other) {
+        let newAmount
+        let newUnit
+        if (this.unit.unit === other.unit.unit) {
+            newAmount = this.amount + other.amount;
+            newUnit = this.unit.unit
+        } else {
+            newAmount = super.add(other);
+            newUnit = other.unit
+        }
+
+        return new Temperature(newAmount, new TemperatureUnits(newUnit));
+    }
 }
 
 export class TemperatureUnits {
