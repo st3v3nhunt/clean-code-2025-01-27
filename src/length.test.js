@@ -49,13 +49,13 @@ describe("Adding Lengths", () => {
         expect(addedLengths.equals(length3)).toBe(true);
     })
 
-    /*it("adding 1 tablespoon to 1 teaspoon should equal 4 teaspoons", () => {
-        const volume1 = new Volume(1, new VolumeUnits(VolumeUnits.TABLESPOON));
-        const volume2 = new Volume(1, new VolumeUnits(VolumeUnits.TEASPOON));
-        const volume3 = new Volume(4, new VolumeUnits(VolumeUnits.TEASPOON));
+    it("adding 1 inch to 1 foot should equal 13 inches", () => {
+        const length1 = new Length(1, new LengthUnits(LengthUnits.INCH));
+        const length2 = new Length(1, new LengthUnits(LengthUnits.FOOT));
+        const length3 = new Length(13, new LengthUnits(LengthUnits.INCH));
 
-        expect(volume1.add(volume2).equals(volume3)).toBe(true);
-    })*/
+        expect(length1.add(length2).equals(length3)).toBe(true);
+    })
 })
 
 // conversions for length
