@@ -2,38 +2,38 @@ import { VolumeUnits, Volume } from "./volume";
 
 describe("Volume and equals", () => {
     it("two volumes of the same type and amount should equal one another", () => {
-        const volume1 = new Volume(1, VolumeUnits.TEASPOON);
-        const volume2 = new Volume(1, VolumeUnits.TEASPOON);
+        const volume1 = new Volume(1, new VolumeUnits(VolumeUnits.TEASPOON));
+        const volume2 = new Volume(1, new VolumeUnits(VolumeUnits.TEASPOON));
 
         expect(volume1.equals(volume2)).toBe(true);
     });
     it("two volumes of the same type and different amount should not equal one another", () => {
-        const volume1 = new Volume(1, VolumeUnits.TEASPOON);
-        const volume2 = new Volume(2, VolumeUnits.TEASPOON);
+        const volume1 = new Volume(1, new VolumeUnits(VolumeUnits.TEASPOON));
+        const volume2 = new Volume(2, new VolumeUnits(VolumeUnits.TEASPOON));
 
         expect(volume1.equals(volume2)).toBe(false);
     });
     it("two volumes of a different type and the same amount should not equal one another", () => {
-        const volume1 = new Volume(1, VolumeUnits.TEASPOON);
-        const volume2 = new Volume(1, VolumeUnits.TABLESPOON);
+        const volume1 = new Volume(1, new VolumeUnits(VolumeUnits.TEASPOON));
+        const volume2 = new Volume(1, new VolumeUnits(VolumeUnits.TABLESPOON));
 
         expect(volume1.equals(volume2)).toBe(false);
     });
     it("two volumes of different type and different amount but equivalent should equal one another", () => {
-        const volume1 = new Volume(3, VolumeUnits.TEASPOON);
-        const volume2 = new Volume(1, VolumeUnits.TABLESPOON);
+        const volume1 = new Volume(3, new VolumeUnits(VolumeUnits.TEASPOON));
+        const volume2 = new Volume(1, new VolumeUnits(VolumeUnits.TABLESPOON));
 
         expect(volume1.equals(volume2)).toBe(true);
     });
     it("two volumes of different type and different amount and not equivalent should not equal one another", () => {
-        const volume1 = new Volume(3, VolumeUnits.TEASPOON);
-        const volume2 = new Volume(2, VolumeUnits.TABLESPOON);
+        const volume1 = new Volume(3, new VolumeUnits(VolumeUnits.TEASPOON));
+        const volume2 = new Volume(2, new VolumeUnits(VolumeUnits.TABLESPOON));
 
         expect(volume1.equals(volume2)).toBe(false);
     });
     it("two volumes with the first volume not a teaspoon but of the equivalent volume should equal one another,", () => {
-        const volume1 = new Volume(1, VolumeUnits.TABLESPOON);
-        const volume2 = new Volume(3, VolumeUnits.TEASPOON);
+        const volume1 = new Volume(1, new VolumeUnits(VolumeUnits.TABLESPOON));
+        const volume2 = new Volume(3, new VolumeUnits(VolumeUnits.TEASPOON));
 
         expect(volume1.equals(volume2)).toBe(true);
     })
@@ -49,8 +49,8 @@ describe("Volume and equals", () => {
         "check a volume is equal to equivalent teaspoon volume",
         ({ unit, amount }) => {
             test(`amount: ${amount} & unit: ${unit}`, () => {
-                const volume1 = new Volume(amount, VolumeUnits.TEASPOON);
-                const volume2 = new Volume(1, unit);
+                const volume1 = new Volume(amount, new VolumeUnits(VolumeUnits.TEASPOON));
+                const volume2 = new Volume(1, new VolumeUnits(unit));
 
                 expect(volume1.equals(volume2)).toBe(true);
             });
@@ -59,9 +59,9 @@ describe("Volume and equals", () => {
 
     describe("Adding Volumes", () => {
         it("adding 1 teaspoon volume to 1 teaspoon should equal 2 teaspoons", () => {
-            const volume1 = new Volume(1, VolumeUnits.TEASPOON);
-            const volume2 = new Volume(1, VolumeUnits.TEASPOON);
-            const volume3 = new Volume(2, VolumeUnits.TEASPOON);
+            const volume1 = new Volume(1, new VolumeUnits(VolumeUnits.TEASPOON));
+            const volume2 = new Volume(1, new VolumeUnits(VolumeUnits.TEASPOON));
+            const volume3 = new Volume(2, new VolumeUnits(VolumeUnits.TEASPOON));
 
             const addedVolumes = volume1.add(volume2);
 
@@ -70,9 +70,9 @@ describe("Volume and equals", () => {
         })
 
         it("adding 1 tablespoon to 1 teaspoon should equal 4 teaspoons", () => {
-            const volume1 = new Volume(1, VolumeUnits.TABLESPOON);
-            const volume2 = new Volume(1, VolumeUnits.TEASPOON);
-            const volume3 = new Volume(4, VolumeUnits.TEASPOON);
+            const volume1 = new Volume(1, new VolumeUnits(VolumeUnits.TABLESPOON));
+            const volume2 = new Volume(1, new VolumeUnits(VolumeUnits.TEASPOON));
+            const volume3 = new Volume(4, new VolumeUnits(VolumeUnits.TEASPOON));
 
             expect(volume1.add(volume2).equals(volume3)).toBe(true);
         })

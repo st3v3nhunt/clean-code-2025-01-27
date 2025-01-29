@@ -5,21 +5,36 @@ export class Volume {
     }
 
     equals(other) {
-        const thisBaseAmount = this.#convertAmountToBaseUnit(this.unit, this.amount)
-        const otherBaseAmount = this.#convertAmountToBaseUnit(other.unit, other.amount)
+        const thisBaseAmount = this.unit.convertAmountToBaseUnit(this.amount)
+        const otherBaseAmount = other.unit.convertAmountToBaseUnit(other.amount)
         return thisBaseAmount === otherBaseAmount
     }
 
     add(other) {
-        const thisBaseAmount = this.#convertAmountToBaseUnit(this.unit, this.amount)
-        const otherBaseAmount = this.#convertAmountToBaseUnit(other.unit, other.amount)
+        const thisBaseAmount = this.unit.convertAmountToBaseUnit(this.amount)
+        const otherBaseAmount = other.unit.convertAmountToBaseUnit(other.amount)
         const newAmount = thisBaseAmount + otherBaseAmount;
 
-        return new Volume(newAmount, VolumeUnits.TEASPOON);
+        return new Volume(newAmount, new VolumeUnits(VolumeUnits.TEASPOON));
     }
 
-    #convertAmountToBaseUnit(unit, amount) {
-        switch (unit) {
+}
+
+export class VolumeUnits {
+    static TEASPOON = 'tsp';
+    static TABLESPOON = 'tbsp';
+    static OUNCE = 'oz';
+    static CUP = 'cup';
+    static PINT = 'pint';
+    static QUART = 'quart';
+    static GALLON = 'gallon';
+
+    constructor(unit) {
+        this.unit = unit;
+    }
+
+    convertAmountToBaseUnit(amount) {
+        switch (this.unit) {
             case VolumeUnits.TABLESPOON:
                 return amount * 3;
             case VolumeUnits.OUNCE:
@@ -36,16 +51,6 @@ export class Volume {
                 return amount;
         }
     }
-}
-
-export class VolumeUnits {
-    static TEASPOON = 'tsp';
-    static TABLESPOON = 'tbsp';
-    static OUNCE = 'oz';
-    static CUP = 'cup';
-    static PINT = 'pint';
-    static QUART = 'quart';
-    static GALLON = 'gallon';
 }
 
 // conversions to teaspoon
