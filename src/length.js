@@ -7,7 +7,7 @@ export class Length extends Measurement {
 
     add(other) {
         const newAmount = super.add(other);
-        return new Length(newAmount, new LengthUnits(LengthUnits.INCH));
+        return new Length(newAmount, new LengthUnits());
     }
 }
 
