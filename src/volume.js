@@ -8,9 +8,8 @@ export class Volume extends Measurement {
     add(other) {
         const newAmount = super.add(other);
 
-        return new Volume(newAmount, new VolumeUnits(VolumeUnits.TEASPOON));
+        return new Volume(newAmount, new VolumeUnits());
     }
-
 }
 
 export class VolumeUnits {
@@ -23,7 +22,7 @@ export class VolumeUnits {
     static GALLON = 'gallon';
 
     constructor(unit) {
-        this.unit = unit;
+        this.unit = unit// || VolumeUnits.BASEUNIT // Don't actually need this default as the switch statement handles it
     }
 
     convertAmountToBaseUnit(amount) {
